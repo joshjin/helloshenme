@@ -26,10 +26,13 @@ public class CatFilter {
 			try {
 				filename = args[1];
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.printf(Message.FILE_NOT_FOUND.toString(), line);
+				throw new Exception();
 			}
 		}
 	}
+	///
+	
 /*
 	public HeadFilter(String line) throws Exception {
 		super();
