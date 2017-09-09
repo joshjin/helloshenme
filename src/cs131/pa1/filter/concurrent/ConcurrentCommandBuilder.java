@@ -3,6 +3,7 @@ package cs131.pa1.filter.concurrent;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PrimitiveIterator.OfDouble;
 
 import cs131.pa1.filter.Message;
 
@@ -83,6 +84,9 @@ public class ConcurrentCommandBuilder {
 		ConcurrentFilter filter;
 		try {
 			switch (commandextract[0]) {
+				case "cat":
+					filter = new CatFilter(subCommand);
+					break;
 				case "cd":
 					filter = new CdFilter(subCommand);
 					break;
@@ -130,7 +134,7 @@ public class ConcurrentCommandBuilder {
 			cmdindex++;
 			
 			//additional checks
-			if(curr instanceof CdFilter || curr instanceof HeadFilter || curr instanceof LsFilter || curr instanceof PwdFilter) {
+			if(curr instanceof CdFilter || curr instanceof CatFilter || curr instanceof HeadFilter || curr instanceof LsFilter || curr instanceof PwdFilter) {
 				System.out.printf(Message.CANNOT_HAVE_INPUT.toString(), cmdlist[cmdindex].trim());
 				return false;
 			}
