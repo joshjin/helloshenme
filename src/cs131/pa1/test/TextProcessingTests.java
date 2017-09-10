@@ -15,37 +15,51 @@ import org.junit.Test;
 
 public class TextProcessingTests {
 	
-	// Tests for head command
+	// Tests for Cat command
 	
-	@Test
-	public void testHead(){
-		testInput("head hello-world.txt\nexit");
+	@Test 
+	public void testCat(){
+		testInput("cat hello-world.txt\nexit");
 		ConcurrentREPL.main(null);
 		assertOutput(Message.NEWCOMMAND + "hello\nworld\n");
 	}
 	
 	@Test
-	public void testHeadLargerFile() {
-		testInput("head ascii.txt\nexit");
+	public void testCatLargerFile() {
+		testInput("cat ascii.txt\nexit");
 		ConcurrentREPL.main(null);
-		assertOutput(Message.NEWCOMMAND + " \n!\n\"\n#\n$\n%\n&\n'\n(\n)\n");
+		assertOutput(Message.NEWCOMMAND + " \n!\n\"\n#\n$\n%\n&\n'\n(\n)\n*\n+\n,\n-\n.\n/\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n:\n;\n<\n=\n?\n@\nA\nB\nC\nD\nE\nF\nG\nH\nI\nJ\nK\nL\nM\nN\nO\nP\nQ\nR\nS\nT\nU\nV\nW\nX\nY\nZ\n[\n\\\n]\n^\n_\n`\na\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl\nm\nn\no\np\nq\nr\ns\nt\nu\nv\nw\nx\ny\nz\n{\n}\n~\n");
 	}
 	
-	@Test
-	public void testHeadOptionLess() {
-		testInput("head -32 ascii.txt\nexit");
-		ConcurrentREPL.main(null);
-		assertOutput(Message.NEWCOMMAND + " \n!\n\"\n#\n$\n%\n&\n'\n(\n)\n*\n+\n,\n-\n.\n/\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n:\n;\n<\n=\n?\n@\n");
-	}
-	
-	@Test
-	public void testHeadOptionMore() {
-		testInput("head -32 hello-world.txt\nexit");
-		ConcurrentREPL.main(null);
-		assertOutput(Message.NEWCOMMAND + "hello\nworld\n");
-	}
-    
-    // Test for redirection command 
+//	@Test
+//	public void testHead(){
+//		testInput("head hello-world.txt\nexit");
+//		ConcurrentREPL.main(null);
+//		assertOutput(Message.NEWCOMMAND + "hello\nworld\n");
+//	}
+//	
+//	@Test
+//	public void testHeadLargerFile() {
+//		testInput("head ascii.txt\nexit");
+//		ConcurrentREPL.main(null);
+//		assertOutput(Message.NEWCOMMAND + " \n!\n\"\n#\n$\n%\n&\n'\n(\n)\n");
+//	}
+//	
+//	@Test
+//	public void testHeadOptionLess() {
+//		testInput("head -32 ascii.txt\nexit");
+//		ConcurrentREPL.main(null);
+//		assertOutput(Message.NEWCOMMAND + " \n!\n\"\n#\n$\n%\n&\n'\n(\n)\n*\n+\n,\n-\n.\n/\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n:\n;\n<\n=\n?\n@\n");
+//	}
+//	
+//	@Test
+//	public void testHeadOptionMore() {
+//		testInput("head -32 hello-world.txt\nexit");
+//		ConcurrentREPL.main(null);
+//		assertOutput(Message.NEWCOMMAND + "hello\nworld\n");
+//	}
+//    
+//     Test for redirection command 
     
     @Test
 	public void testReadWrittenFile(){
