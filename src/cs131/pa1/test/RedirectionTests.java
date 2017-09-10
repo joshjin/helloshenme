@@ -24,7 +24,7 @@ public class RedirectionTests {
 
 	@Test
 	public void testHeadRedirected(){
-		testInput("head hello-world.txt > new-hello-world.txt\nexit");
+		testInput("cat hello-world.txt > new-hello-world.txt\nexit");
 		ConcurrentREPL.main(null);
 		assertFileContentsEquals("new-hello-world.txt", "hello\nworld\n");
 		assertOutput(Message.NEWCOMMAND.toString());
@@ -33,7 +33,7 @@ public class RedirectionTests {
 	
 	@Test
 	public void testComplexRedirection(){
-		testInput("head -10005 fizz-buzz-10000.txt | grep F | wc > trial-file.txt\nexit");
+		testInput("cat fizz-buzz-10000.txt | grep F | wc > trial-file.txt\nexit");
 		ConcurrentREPL.main(null);
 		assertFileContentsEquals("trial-file.txt", "3334 3334 16004\n");
 		assertOutput(Message.NEWCOMMAND.toString());

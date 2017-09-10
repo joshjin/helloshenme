@@ -32,7 +32,7 @@ public class CatFilter extends ConcurrentFilter{
 			reader = new Scanner(new File(filename));
 		} catch (FileNotFoundException e) {
 			System.out.printf(Message.FILE_NOT_FOUND.toString(), line);
-			throw new Exception();
+			throw new FileNotFoundException();
 		}
 	}
 
