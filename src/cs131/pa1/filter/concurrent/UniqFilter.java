@@ -1,11 +1,22 @@
 package cs131.pa1.filter.concurrent;
 
-public class UniqFilter extends ConcurrentFilter{
+import java.util.HashSet;
 
-	@Override
-	public String processLine(String line) {
-		// TODO Auto-generated method stub
-		return null;
+public class UniqFilter extends ConcurrentFilter{
+	private HashSet<String> existingStringSet;
+	//This set will record what strings are existing
+	
+	public UniqFilter (String line) throws Exception {
+		existingStringSet = new HashSet<String> ();
 	}
 
+	
+	public String processLine(String line) {
+		if(existingStringSet.contains(line)) {
+			return null;
+		}else {
+			existingStringSet.add(line);
+			return line;
+		}
+	}
 }
