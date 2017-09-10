@@ -96,9 +96,9 @@ public class ConcurrentCommandBuilder {
 				case "pwd":
 					filter = new PwdFilter();
 					break;
-				case "head":
-					filter = new HeadFilter(subCommand);
-					break;
+//				case "head":
+//					filter = new HeadFilter(subCommand);
+//					break;
 				case "grep":
 					filter = new GrepFilter(subCommand);
 					break;
@@ -134,7 +134,7 @@ public class ConcurrentCommandBuilder {
 			cmdindex++;
 			
 			//additional checks
-			if(curr instanceof CdFilter || curr instanceof CatFilter || curr instanceof HeadFilter || curr instanceof LsFilter || curr instanceof PwdFilter) {
+			if(curr instanceof CdFilter || curr instanceof CatFilter || curr instanceof LsFilter || curr instanceof PwdFilter) {
 				System.out.printf(Message.CANNOT_HAVE_INPUT.toString(), cmdlist[cmdindex].trim());
 				return false;
 			}
