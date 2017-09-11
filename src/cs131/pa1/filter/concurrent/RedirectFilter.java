@@ -8,7 +8,7 @@ import java.util.Arrays;
 import cs131.pa1.filter.Filter;
 import cs131.pa1.filter.Message;
 
-public class RedirectFilter extends ConcurrentFilter {
+public class RedirectFilter extends SequentialFilter {
 	private FileWriter fw;
 	
 	public RedirectFilter(String line) throws Exception {
@@ -20,7 +20,7 @@ public class RedirectFilter extends ConcurrentFilter {
 				throw new Exception();
 			}
 			try {
-				fw = new FileWriter(new File(ConcurrentREPL.currentWorkingDirectory + Filter.FILE_SEPARATOR + param[1].trim()));
+				fw = new FileWriter(new File(SequentialREPL.currentWorkingDirectory + Filter.FILE_SEPARATOR + param[1].trim()));
 			} catch (IOException e) {
 				System.out.printf(Message.FILE_NOT_FOUND.toString(), line);	//shouldn't really happen but just in case
 				throw new Exception();

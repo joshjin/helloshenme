@@ -1,6 +1,6 @@
 package cs131.pa1.filter.concurrent;
 
-public class PrintFilter extends ConcurrentFilter {
+public class PrintFilter extends SequentialFilter {
 	public PrintFilter() {
 		super();
 	}

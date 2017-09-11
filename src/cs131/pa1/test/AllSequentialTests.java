@@ -25,24 +25,26 @@ public class AllSequentialTests {
     	createFile("hello.txt", "HELLO");
     	createFile("world.txt", "WORLD");
     	createFile("hello-world.txt", "hello\nworld");
+    	createFile("fizz-buzz-10.txt", generateFizzBuzz(10));
     	createFile("fizz-buzz-100.txt", generateFizzBuzz(100));
     	createFile("fizz-buzz-10000.txt", generateFizzBuzz(10000));
-		createFile("fizz-buzz-1500000.txt", generateFizzBuzz(1500000));
+	createFile("fizz-buzz-1500000.txt", generateFizzBuzz(1500000));
     	createFile("ascii.txt", generateASCII());
+    	createFile("pi.txt", generatePi());
     	
     	File f = new File("dir1/dir2/dir3/dir4");
     	f.mkdirs();
-		createFile("dir1/f1.txt", "FILE 1\nTHIS IS THE FIRST FILE.\nI HOPE YOU LIKE IT\n\n\nYOU DO????");
-		createFile("dir1/dir2/f2.txt", "FILE 2\nTHIS IS THE SECOND FILE.\nIT IS PRETTY SIMILAR\nI HOPE YOU LIKE IT\n\n\nDO YOU????");
-		createFile("dir1/dir2/dir3/dir4/f4.txt", "FILE 1\nTHIS IS THE LAST FILE.\nI HOPE YOU LIKED IT\n\n\nDID YOU????");
+	createFile("dir1/f1.txt", "FILE 1\nTHIS IS THE FIRST FILE.\nI HOPE YOU LIKE IT\n\n\nYOU DO????");
+	createFile("dir1/dir2/f2.txt", "FILE 2\nTHIS IS THE SECOND FILE.\nIT IS PRETTY SIMILAR\nI HOPE YOU LIKE IT\n\n\nDO YOU????");
+	createFile("dir1/dir2/dir3/dir4/f4.txt", "FILE 1\nTHIS IS THE LAST FILE.\nI HOPE YOU LIKED IT\n\n\nDID YOU????");
     	
     }
 
     @AfterClass
     public static void tearDown() throws Exception {
     	if (!AllSequentialTests.DEBUGGING_MODE){
-	    	String[] files = {"hello.txt", "hello2.txt", "world.txt", "hello-world.txt", "fizz-buzz-100.txt",
-					"fizz-buzz-10000.txt", "fizz-buzz-1500000.txt", "replTest1.txt", "replTest2.txt", "replTest3.txt", "ascii.txt", "empty.txt"};
+	    	String[] files = {"folder-contents.txt","hello.txt", "hello2.txt", "world.txt", "hello-world.txt", "fizz-buzz-100.txt",
+					"fizz-buzz-10000.txt", "fizz-buzz-1500000.txt", "replTest1.txt", "replTest2.txt", "replTest3.txt", "ascii.txt", "empty.txt","pi.txt","fizz-buzz-10.txt"};
 	    	for (String fileName : files){
 	    		File f = new File(fileName);
 	    		f.delete();
@@ -105,13 +107,19 @@ public class AllSequentialTests {
     }
     
     private static String generateASCII() {
-    	StringBuffer sb = new StringBuffer();
-    	for(int i = 32; i <= 126; i++) {
-    		if (i != 62 && i != 124) 
-    			sb.append((char)i + "\n");
-    	}
-    	return sb.toString();
+    		StringBuffer sb = new StringBuffer();
+    		for(int i = 32; i <= 126; i++) {
+    			if (i != 62 && i != 124) 
+    				sb.append((char)i + "\n");
+    		}
+    		return sb.toString();
     }
+    
+    private static String generatePi() {
+    		return "Pi\nis\n3\n.\n1\n4\n1\n5\n9\n2\n6\n5\n3\n5\n9\n.\n.\n.\n";
+    }
+    
+    
     
 	// Cleanup message
 	public static void destroyFile(String fileName){

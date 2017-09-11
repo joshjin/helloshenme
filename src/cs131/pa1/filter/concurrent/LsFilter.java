@@ -1,7 +1,7 @@
 package cs131.pa1.filter.concurrent;
 import java.io.File;
 
-public class LsFilter extends ConcurrentFilter{
+public class LsFilter extends SequentialFilter{
 	int counter;
 	File folder;
 	File[] flist;
@@ -9,7 +9,7 @@ public class LsFilter extends ConcurrentFilter{
 	public LsFilter() {
 		super();
 		counter = 0;
-		folder = new File(ConcurrentREPL.currentWorkingDirectory);
+		folder = new File(SequentialREPL.currentWorkingDirectory);
 		flist = folder.listFiles();
 	}
 	

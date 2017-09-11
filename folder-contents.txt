@@ -1,8 +1,0 @@
-.classpath
-.idea
-.project
-.settings
-bin
-replTest1.txt &
-replTest2.txt &
-src

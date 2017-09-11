@@ -2,11 +2,11 @@ package cs131.pa1.filter.concurrent;
 
 import java.util.HashSet;
 
-public class UniqFilter extends ConcurrentFilter{
+public class UniqFilter extends SequentialFilter{
 	private HashSet<String> existingStringSet;
 	//This set will record what strings are existing
 	
-	public UniqFilter (String line) throws Exception {
+	public UniqFilter () throws Exception {
 		existingStringSet = new HashSet<String> ();
 	}
 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 import cs131.pa1.filter.Filter;
 import cs131.pa1.filter.Message;
 
-public class CatFilter extends ConcurrentFilter{
+public class CatFilter extends SequentialFilter{
 	private Scanner reader;
 	
 	public CatFilter(String line) throws Exception {

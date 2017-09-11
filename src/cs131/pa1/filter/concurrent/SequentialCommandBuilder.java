@@ -7,11 +7,11 @@ import java.util.PrimitiveIterator.OfDouble;
 
 import cs131.pa1.filter.Message;
 
-public class ConcurrentCommandBuilder {
+public class SequentialCommandBuilder {
 	
-	public static ConcurrentFilter createFiltersFromCommand(String command){
+	public static SequentialFilter createFiltersFromCommand(String command){
 		//initialize the list that will hold all of the filters
-				List<ConcurrentFilter> filters = new LinkedList<ConcurrentFilter>();
+				List<SequentialFilter> filters = new LinkedList<SequentialFilter>();
 				//adding whitespace so that string splitting doesn't bug
 				command = " " + command + " ";
 				//removing the final filter here
@@ -22,7 +22,7 @@ public class ConcurrentCommandBuilder {
 				//for all the commands, split them by pipes, construct each filter, and add them to the filters list.
 				String[] commands = truncCommand.split("\\|");
 				for(int i = 0; i < commands.length; i++) {
-					ConcurrentFilter filter = constructFilterFromSubCommand(commands[i].trim());
+					SequentialFilter filter = constructFilterFromSubCommand(commands[i].trim());
 					if(filter != null) {
 						filters.add(filter);
 					} else {
@@ -30,7 +30,7 @@ public class ConcurrentCommandBuilder {
 					}
 				}
 				
-				ConcurrentFilter fin = determineFinalFilter(command);
+				SequentialFilter fin = determineFinalFilter(command);
 				if(fin == null) {
 					return null;
 				}
@@ -43,7 +43,7 @@ public class ConcurrentCommandBuilder {
 				}
 	}
 	
-	private static ConcurrentFilter determineFinalFilter(String command){
+	private static SequentialFilter determineFinalFilter(String command){
 		String[] redir = command.split(">");
 		if(redir.length == 1) {
 			return new PrintFilter();
@@ -79,9 +79,9 @@ public class ConcurrentCommandBuilder {
 		return removeRedir[0];
 	}
 	
-	private static ConcurrentFilter constructFilterFromSubCommand(String subCommand){
+	private static SequentialFilter constructFilterFromSubCommand(String subCommand){
 		String[] commandextract = subCommand.split(" ");
-		ConcurrentFilter filter;
+		SequentialFilter filter;
 		try {
 			switch (commandextract[0]) {
 				case "cat":
@@ -105,6 +105,9 @@ public class ConcurrentCommandBuilder {
 				case "wc":
 					filter = new WcFilter();
 					break;
+				case "uniq":
+					filter = new UniqFilter();
+					break;
 				default:
 					System.out.printf(Message.COMMAND_NOT_FOUND.toString(), subCommand);
 					return null;
@@ -115,10 +118,10 @@ public class ConcurrentCommandBuilder {
 		return filter;
 	}
 
-	private static boolean linkFilters(List<ConcurrentFilter> filters, String command){
-		Iterator<ConcurrentFilter> iter = filters.iterator();
-		ConcurrentFilter prev;
-		ConcurrentFilter curr = iter.next();
+	private static boolean linkFilters(List<SequentialFilter> filters, String command){
+		Iterator<SequentialFilter> iter = filters.iterator();
+		SequentialFilter prev;
+		SequentialFilter curr = iter.next();
 		String[] cmdlist = command.split("\\|");	//command is brought in so we can output proper error messages
 		int cmdindex = 0;
 		

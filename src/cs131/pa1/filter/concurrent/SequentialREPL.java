@@ -1,13 +1,12 @@
 package cs131.pa1.filter.concurrent;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import cs131.pa1.filter.Filter;
 import cs131.pa1.filter.Message;
 
-public class ConcurrentREPL {
+public class SequentialREPL {
 
 	static String currentWorkingDirectory;
 	
@@ -25,10 +24,10 @@ public class ConcurrentREPL {
 			} else if(!command.trim().equals("")) {
 				
 				//building the filters list from the command
-				ConcurrentFilter filterlist = ConcurrentCommandBuilder.createFiltersFromCommand(command);
+				SequentialFilter filterlist = SequentialCommandBuilder.createFiltersFromCommand(command);
 				while(filterlist != null) {
 					filterlist.process();
-					filterlist = (ConcurrentFilter) filterlist.getNext();
+					filterlist = (SequentialFilter) filterlist.getNext();
 				}
 				
 				//checking to see if construction was successful. If not, prompt user for another command

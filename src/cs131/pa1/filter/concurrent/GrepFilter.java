@@ -2,7 +2,7 @@ package cs131.pa1.filter.concurrent;
 
 import cs131.pa1.filter.Message;
 
-public class GrepFilter extends ConcurrentFilter {
+public class GrepFilter extends SequentialFilter {
 	private String toFind;
 	
 	public GrepFilter(String line) throws Exception {

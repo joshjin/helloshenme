@@ -5,23 +5,23 @@ import java.io.File;
 import cs131.pa1.filter.Filter;
 import cs131.pa1.filter.Message;
 
-public class CdFilter extends ConcurrentFilter {
+public class CdFilter extends SequentialFilter {
 	private String dirToSet;
 	
 	public CdFilter(String line) throws Exception {
 		super();
-		dirToSet = ConcurrentREPL.currentWorkingDirectory;
+		dirToSet = SequentialREPL.currentWorkingDirectory;
 		String[] args = line.trim().split(" ");
 		if(args.length == 1) {
 			System.out.printf(Message.REQUIRES_PARAMETER.toString(), line.trim());
 			throw new Exception();
 		}
 		if(args[1].equals("..")) {
-			String current = ConcurrentREPL.currentWorkingDirectory;
+			String current = SequentialREPL.currentWorkingDirectory;
 			current = current.substring(0, current.lastIndexOf(Filter.FILE_SEPARATOR));
 			dirToSet = current;
 		} else if (!args[1].equals(".")) {
-			String current = ConcurrentREPL.currentWorkingDirectory;
+			String current = SequentialREPL.currentWorkingDirectory;
 			current = current + Filter.FILE_SEPARATOR + args[1];
 			File test = new File(current);
 			if (test.isDirectory()) {
@@ -38,7 +38,7 @@ public class CdFilter extends ConcurrentFilter {
 	}
 	
 	public String processLine(String line) {
-		ConcurrentREPL.currentWorkingDirectory = dirToSet;
+		SequentialREPL.currentWorkingDirectory = dirToSet;
 		return null;
 	}
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import cs131.pa1.filter.Message;
 
-public class HeadFilter extends ConcurrentFilter {
+public class HeadFilter extends SequentialFilter {
 	private Scanner reader;
 	private int count;
 	private int total;

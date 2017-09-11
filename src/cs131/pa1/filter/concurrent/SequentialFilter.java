@@ -5,7 +5,7 @@ import java.util.Queue;
 import cs131.pa1.filter.Filter;
 
 
-public abstract class ConcurrentFilter extends Filter {
+public abstract class SequentialFilter extends Filter {
 	
 	protected Queue<String> input;
 	protected Queue<String> output;
@@ -17,8 +17,8 @@ public abstract class ConcurrentFilter extends Filter {
 	
 	@Override
 	public void setNextFilter(Filter nextFilter) {
-		if (nextFilter instanceof ConcurrentFilter){
-			ConcurrentFilter sequentialNext = (ConcurrentFilter) nextFilter;
+		if (nextFilter instanceof SequentialFilter){
+			SequentialFilter sequentialNext = (SequentialFilter) nextFilter;
 			this.next = sequentialNext;
 			sequentialNext.prev = this;
 			if (this.output == null){
@@ -32,7 +32,6 @@ public abstract class ConcurrentFilter extends Filter {
 	
 	public Filter getNext() {
 		return next;
-		//return null;
 	}
 	
 	public void process(){

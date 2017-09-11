@@ -1,6 +1,6 @@
 package cs131.pa1.filter.concurrent;
 
-public class PwdFilter extends ConcurrentFilter {
+public class PwdFilter extends SequentialFilter {
 	public PwdFilter() {
 		super();
 	}
@@ -10,6 +10,6 @@ public class PwdFilter extends ConcurrentFilter {
 	}
 	
 	public String processLine(String line) {
-		return ConcurrentREPL.currentWorkingDirectory;
+		return SequentialREPL.currentWorkingDirectory;
 	}
 }

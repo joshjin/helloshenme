@@ -2,7 +2,7 @@ package cs131.pa1.test;
 
 
 import cs131.pa1.filter.Message;
-import cs131.pa1.filter.concurrent.ConcurrentREPL;
+import cs131.pa1.filter.concurrent.SequentialREPL;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -25,7 +25,7 @@ public class RedirectionTests {
 	@Test
 	public void testHeadRedirected(){
 		testInput("cat hello-world.txt > new-hello-world.txt\nexit");
-		ConcurrentREPL.main(null);
+		SequentialREPL.main(null);
 		assertFileContentsEquals("new-hello-world.txt", "hello\nworld\n");
 		assertOutput(Message.NEWCOMMAND.toString());
 		AllSequentialTests.destroyFile("new-hello-world.txt");
@@ -34,7 +34,7 @@ public class RedirectionTests {
 	@Test
 	public void testComplexRedirection(){
 		testInput("cat fizz-buzz-10000.txt | grep F | wc > trial-file.txt\nexit");
-		ConcurrentREPL.main(null);
+		SequentialREPL.main(null);
 		assertFileContentsEquals("trial-file.txt", "3334 3334 16004\n");
 		assertOutput(Message.NEWCOMMAND.toString());
 		AllSequentialTests.destroyFile("trial-file.txt");
@@ -43,7 +43,7 @@ public class RedirectionTests {
 	@Test
 	public void testDirectoryShiftedRedirection() throws FileNotFoundException{
 		testInput("cd dir1\nls > folder-contents.txt\nexit");
-		ConcurrentREPL.main(null);
+		SequentialREPL.main(null);
 		Set<String> expected = new HashSet<String>();
 		expected.add("dir2");
 		expected.add("f1.txt");
